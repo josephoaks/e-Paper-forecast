@@ -4,10 +4,10 @@ This project is intended to display the current weather and 3 day forecast.
 
 ## Items used in this project:
 
-Raspberry Pi 4b 8GB
-Waveshare PoE HAT
-Waveshare 7.5 inch E-Ink Display HAT, 800x480 Pixel Black, White Two-Color E-Paper Screen
-Waveshare EPD
+- Raspberry Pi 4b 8GB
+- Waveshare PoE HAT
+- Waveshare 7.5 inch E-Ink Display HAT, 800x480 Pixel Black, White Two-Color E-Paper Screen
+- Waveshare EPD
 
 For this project I choose to use <https://www.weatherapi.com>
 
