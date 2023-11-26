@@ -21,4 +21,4 @@ For this project I choose to use <https://www.weatherapi.com>
 5. The days are set to 4, this gives the current day + 3 days of forecast.
 6. Run `python forecast.py` or to put in the background `nohup python forecast.py &`.
 
-![alt text](20231125_143833.jpg "image showing a screen with the current weather and 3 day forecast")
+![alt text](image.jpg "image showing a screen with the current weather and 3 day forecast")
