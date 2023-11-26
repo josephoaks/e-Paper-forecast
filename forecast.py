@@ -103,7 +103,7 @@ def display_weather_data(epd, image_path, font, data):
           precip_value = forecast_data[2]['day']['daily_chance_of_rain']
         draw.text((301, y_position), f"{precip_type}: {precip_value}%", fill=white, font=font20)
         y_position += 35
-        draw.text((301, y_position), f"Wind: {forecast_data[1]['day']['maxwind_mph']}", fill=white, font=font20)
+        draw.text((301, y_position), f"Wind: {forecast_data[2]['day']['maxwind_mph']}", fill=white, font=font20)
 
         y_position = 250
         date_str = forecast_data[3]['date']
@@ -125,7 +125,7 @@ def display_weather_data(epd, image_path, font, data):
           precip_value = forecast_data[3]['day']['daily_chance_of_rain']
         draw.text((566, y_position), f"{precip_type}: {precip_value}%", fill=white, font=font20)
         y_position += 35
-        draw.text((566, y_position), f"Wind: {forecast_data[1]['day']['maxwind_mph']}", fill=white, font=font20)
+        draw.text((566, y_position), f"Wind: {forecast_data[3]['day']['maxwind_mph']}", fill=white, font=font20)
 
         epd.display(epd.getbuffer(image))
         epd.sleep()
