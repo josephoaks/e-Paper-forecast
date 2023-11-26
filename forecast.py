@@ -3,8 +3,9 @@
 # and print it to an e-Paper Driver hat for    #
 # Raspberry Pi.                                #
 # Written by Joseph Oaks                       #
-# 24 Nov 2023                                  #
-# Version 0.9                                  #
+# Created: 24 Nov 2023                         #
+# Last modified: 26 Nov 2023                   #
+# Version 1.0                                  #
 ################################################
 import requests
 import json
@@ -49,83 +50,87 @@ def display_weather_data(epd, image_path, font, data):
         forecast_data = data['forecast']['forecastday']
 
         # Current weather data
-        date_str = data['current']['last_updated']
+        current = data['current']
+        date_str = current['last_updated']
         date_obj = datetime.strptime(date_str.split()[0], '%Y-%m-%d')
         formatted_date = date_obj.strftime('%A, %d-%b-%Y')
         draw.text((163, 20), f"{formatted_date}", fill=white, font=font20)
-        draw.text((146, 55), f"{data['current']['temp_f']} F", fill=white, font=font90)
-        draw.text((163, 170), f"Feels like {data['current']['feelslike_f']} F", fill=white, font=font30)
-        draw.text((556, 20), f"{data['current']['condition']['text']}", fill=white, font=font30)
-        draw.text((556, 55), f"Precip: {data['current']['precip_in']}", fill=white, font=font30)
-        draw.text((556, 90), f"Wind: {data['current']['wind_mph']} MPH", fill=white, font=font30)
-        draw.text((556, 125), f"Wind: {data['current']['wind_dir']}", fill=white, font=font30)
+        draw.text((146, 55), f"{current['temp_f']} F", fill=white, font=font90)
+        draw.text((163, 170), f"Feels like {current['feelslike_f']} F", fill=white, font=font30)
+        draw.text((556, 20), f"{current['condition']['text']}", fill=white, font=font30)
+        draw.text((556, 55), f"Precip: {current['precip_in']}", fill=white, font=font30)
+        draw.text((556, 90), f"Wind: {current['wind_mph']} MPH", fill=white, font=font30)
+        draw.text((556, 125), f"Wind: {current['wind_dir']}", fill=white, font=font30)
 
         # 3-day forecast weather data
         y_position = 250
+        day1 = forecast_data[1]['day']
         date_str = forecast_data[1]['date']
         date_obj = datetime.strptime(date_str, '%Y-%m-%d')
         formatted_date = date_obj.strftime('%A, %d-%b-%Y')
         draw.text((36, y_position), f"{formatted_date}", fill=white, font=font20)
         y_position += 35
-        draw.text((36, y_position), f"H: {forecast_data[1]['day']['maxtemp_f']}", fill=white, font=font20)
+        draw.text((36, y_position), f"H: {day1['maxtemp_f']}", fill=white, font=font20)
         y_position += 35
-        draw.text((36, y_position), f"L: {forecast_data[1]['day']['mintemp_f']}", fill=white, font=font20)
+        draw.text((36, y_position), f"L: {day1['mintemp_f']}", fill=white, font=font20)
         y_position += 35
-        draw.text((36, y_position), f"Condition: {forecast_data[1]['day']['condition']['text']}", fill=white, font=font20)
+        draw.text((36, y_position), f"Condition: {day1['condition']['text']}", fill=white, font=font20)
         y_position += 35
-        if forecast_data[1]['day']['daily_chance_of_snow'] != 0:
+        if day1['daily_chance_of_snow'] != 0:
           precip_type = "Snow"
-          precip_value = forecast_data[1]['day']['daily_chance_of_snow']
+          precip_value = day1['daily_chance_of_snow']
         else:
           precip_type = "Rain"
-          precip_value = forecast_data[1]['day']['daily_chance_of_rain']
+          precip_value = day1['daily_chance_of_rain']
         draw.text((36, y_position), f"{precip_type}: {precip_value}%", fill=white, font=font20)
         y_position += 35
-        draw.text((36, y_position), f"Wind: {forecast_data[1]['day']['maxwind_mph']}", fill=white, font=font20)
+        draw.text((36, y_position), f"Wind: {day1['maxwind_mph']}", fill=white, font=font20)
 
         y_position = 250
+        day2 = forecast_data[2]['day']
         date_str = forecast_data[2]['date']
         date_obj = datetime.strptime(date_str, '%Y-%m-%d')
         formatted_date = date_obj.strftime('%A, %d-%b-%Y')
         draw.text((301, y_position), f"{formatted_date}", fill=white, font=font20)
         y_position += 35
-        draw.text((301, y_position), f"H: {forecast_data[2]['day']['maxtemp_f']}", fill=white, font=font20)
+        draw.text((301, y_position), f"H: {day2['maxtemp_f']}", fill=white, font=font20)
         y_position += 35
-        draw.text((301, y_position), f"L: {forecast_data[2]['day']['mintemp_f']}", fill=white, font=font20)
+        draw.text((301, y_position), f"L: {day2['mintemp_f']}", fill=white, font=font20)
         y_position += 35
-        draw.text((301, y_position), f"Condition: {forecast_data[2]['day']['condition']['text']}", fill=white, font=font20)
+        draw.text((301, y_position), f"Condition: {day2['condition']['text']}", fill=white, font=font20)
         y_position += 35
-        if forecast_data[2]['day']['daily_chance_of_snow'] != 0:
+        if day2['daily_chance_of_snow'] != 0:
           precip_type = "Snow"
-          precip_value = forecast_data[2]['day']['daily_chance_of_snow']
+          precip_value = day2['daily_chance_of_snow']
         else:
           precip_type = "Rain"
-          precip_value = forecast_data[2]['day']['daily_chance_of_rain']
+          precip_value = day2['daily_chance_of_rain']
         draw.text((301, y_position), f"{precip_type}: {precip_value}%", fill=white, font=font20)
         y_position += 35
-        draw.text((301, y_position), f"Wind: {forecast_data[2]['day']['maxwind_mph']}", fill=white, font=font20)
+        draw.text((301, y_position), f"Wind: {day2['maxwind_mph']}", fill=white, font=font20)
 
         y_position = 250
+        day3 = forecast_data[3]['day']
         date_str = forecast_data[3]['date']
         date_obj = datetime.strptime(date_str, '%Y-%m-%d')
         formatted_date = date_obj.strftime('%A, %d-%b-%Y')
         draw.text((566, y_position), f"{formatted_date}", fill=white, font=font20)
         y_position += 35
-        draw.text((566, y_position), f"H: {forecast_data[3]['day']['maxtemp_f']}", fill=white, font=font20)
+        draw.text((566, y_position), f"H: {day3['maxtemp_f']}", fill=white, font=font20)
         y_position += 35
-        draw.text((566, y_position), f"L: {forecast_data[3]['day']['mintemp_f']}", fill=white, font=font20)
+        draw.text((566, y_position), f"L: {day3['mintemp_f']}", fill=white, font=font20)
         y_position += 35
-        draw.text((566, y_position), f"Condition: {forecast_data[3]['day']['condition']['text']}", fill=white, font=font20)
+        draw.text((566, y_position), f"Condition: {day3['condition']['text']}", fill=white, font=font20)
         y_position += 35
-        if forecast_data[3]['day']['daily_chance_of_snow'] != 0:
+        if day3['daily_chance_of_snow'] != 0:
           precip_type = "Snow"
-          precip_value = forecast_data[3]['day']['daily_chance_of_snow']
+          precip_value = day3['daily_chance_of_snow']
         else:
           precip_type = "Rain"
-          precip_value = forecast_data[3]['day']['daily_chance_of_rain']
+          precip_value = day3['daily_chance_of_rain']
         draw.text((566, y_position), f"{precip_type}: {precip_value}%", fill=white, font=font20)
         y_position += 35
-        draw.text((566, y_position), f"Wind: {forecast_data[3]['day']['maxwind_mph']}", fill=white, font=font20)
+        draw.text((566, y_position), f"Wind: {day3['maxwind_mph']}", fill=white, font=font20)
 
         epd.display(epd.getbuffer(image))
         epd.sleep()
