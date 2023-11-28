@@ -33,6 +33,7 @@ epd = epd7in5_V2.EPD()
 def display_weather_data(epd, image_path, font, data):
   try:
     epd.init()
+    epd.Clear()
     image = Image.open(image_path)
     draw = ImageDraw.Draw(image)
 
@@ -48,7 +49,7 @@ def display_weather_data(epd, image_path, font, data):
     feelslike = 'Feels: ' + str(current['feelslike_f']) + 'F'
     cond0 = current['condition']['text']
     precip0 = 'Precip: ' + str(current['precip_in'])
-    wind0 = 'Wind: ' + str(current['wind_mph'])
+    wind0 = 'Wind: ' + str(current['wind_mph']) + ' mph'
     windd0 = 'Wind: ' + str(current['wind_dir'])
 
     # day 1 variables
@@ -59,7 +60,7 @@ def display_weather_data(epd, image_path, font, data):
     maxtemp1 = 'H: ' + str(day1['maxtemp_f']) + u'\N{DEGREE SIGN} F'
     mintemp1 = 'L: ' + str(day1['mintemp_f']) + u'\N{DEGREE SIGN} F'
     cond1 =  day1['condition']['text']
-    wind1 = 'Wind: ' + str(day1['maxwind_mph'])
+    wind1 = 'Wind: ' + str(day1['maxwind_mph']) + ' mph'
     if day1['daily_chance_of_snow'] != 0:
       precip_t1 = "Snow: "
       precip_v1 = day1['daily_chance_of_snow']
@@ -76,7 +77,7 @@ def display_weather_data(epd, image_path, font, data):
     maxtemp2 = 'H: ' + str(day2['maxtemp_f']) + u'\N{DEGREE SIGN} F'
     mintemp2 = 'L: ' + str(day2['mintemp_f']) + u'\N{DEGREE SIGN} F'
     cond2 =  day2['condition']['text']
-    wind2 = 'Wind: ' + str(day2['maxwind_mph'])
+    wind2 = 'Wind: ' + str(day2['maxwind_mph']) + ' mph'
     if day2['daily_chance_of_snow'] != 0:
       precip_t2 = "Snow: "
       precip_v2 = day2['daily_chance_of_snow']
@@ -93,7 +94,7 @@ def display_weather_data(epd, image_path, font, data):
     maxtemp3 = 'H: ' + str(day3['maxtemp_f']) + u'\N{DEGREE SIGN} F'
     mintemp3 = 'L: ' + str(day3['mintemp_f']) + u'\N{DEGREE SIGN} F'
     cond3 =  day3['condition']['text']
-    wind3 = 'Wind: ' + str(day3['maxwind_mph'])
+    wind3 = 'Wind: ' + str(day3['maxwind_mph']) + ' mph'
     if day3['daily_chance_of_snow'] != 0:
       precip_t3 = "Snow: "
       precip_v3 = day3['daily_chance_of_snow']
