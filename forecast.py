@@ -56,7 +56,7 @@ def display_weather_data(epd, image_path, font, data):
     day1 = forecast_data[1]['day']
     date_str1 = forecast_data[1]['date']
     date_obj1 = datetime.strptime(date_str1, '%Y-%m-%d')
-    f_date1 = date_obj1.strftime('%A, %d-%b-%Y')
+    f_date1 = date_obj1.strftime('%a, %d-%b-%Y')
     maxtemp1 = 'H: ' + str(day1['maxtemp_f']) + u'\N{DEGREE SIGN} F'
     mintemp1 = 'L: ' + str(day1['mintemp_f']) + u'\N{DEGREE SIGN} F'
     cond1 =  day1['condition']['text']
@@ -73,7 +73,7 @@ def display_weather_data(epd, image_path, font, data):
     day2 = forecast_data[2]['day']
     date_str2 = forecast_data[2]['date']
     date_obj2 = datetime.strptime(date_str2, '%Y-%m-%d')
-    f_date2 = date_obj2.strftime('%A, %d-%b-%Y')
+    f_date2 = date_obj2.strftime('%a, %d-%b-%Y')
     maxtemp2 = 'H: ' + str(day2['maxtemp_f']) + u'\N{DEGREE SIGN} F'
     mintemp2 = 'L: ' + str(day2['mintemp_f']) + u'\N{DEGREE SIGN} F'
     cond2 =  day2['condition']['text']
@@ -90,7 +90,7 @@ def display_weather_data(epd, image_path, font, data):
     day3 = forecast_data[3]['day']
     date_str3 = forecast_data[3]['date']
     date_obj3 = datetime.strptime(date_str3, '%Y-%m-%d')
-    f_date3 = date_obj3.strftime('%A, %d-%b-%Y')
+    f_date3 = date_obj3.strftime('%a, %d-%b-%Y')
     maxtemp3 = 'H: ' + str(day3['maxtemp_f']) + u'\N{DEGREE SIGN} F'
     mintemp3 = 'L: ' + str(day3['mintemp_f']) + u'\N{DEGREE SIGN} F'
     cond3 =  day3['condition']['text']
