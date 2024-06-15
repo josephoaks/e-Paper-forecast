@@ -13,12 +13,15 @@ For this project I choose to use <https://www.weatherapi.com>
 
 ## Instructions
 
+### Openweather updated their API calls, forecast.py is now obsolete as of June 2024
+### Use forecast-3.0.py instead ! ! !
+
 1. Create an account at <https://www.weatherapi.com>
-2. Copy your API Key and insert it into `forecast.py`.
-3. Set your Location.
+2. Copy your API Key and insert it into `forecast-3.0.py`.
+3. Set your Location, part of the new API, you must use the Longitude and Latitude.
 4. Set your interval for refresh, currently set to every 4 hours, change it as you see fit.
-     this setting is the `time.sleep(14400)`
+     this setting is the `time.sleep(3600)`
 5. The days are set to 4, this gives the current day + 3 days of forecast.
-6. Run `python forecast.py` or to put in the background `nohup python forecast.py &`.
+6. Run `python forecast-3.0.py` or to put in the background `nohup python forecast-3.0.py &`.
 
 ![alt text](image.jpg "image showing a screen with the current weather and 3 day forecast")
