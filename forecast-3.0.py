@@ -40,14 +40,12 @@ def display_weather_data(epd, image_path, font, data):
         epd.display(epd.getbuffer(image))
         draw = ImageDraw.Draw(image)
 
-        ### NEW DATA SET ###
         date_str = datetime.utcfromtimestamp(data['current']['dt']).strftime('%d-%b-%Y')
         current_temp = data['current']['temp']
         wind_speed = data['current']['wind_speed']
         weather_main = data['current']['weather'][0]['description']
         min_temp = data['daily'][0]['temp']['min']
         max_temp = data['daily'][0]['temp']['max']
-        ### END DATA SET ###
 
         # Current weather data
         draw.text((163, 20), f"Date: {date_str}", fill=white, font=font20)
